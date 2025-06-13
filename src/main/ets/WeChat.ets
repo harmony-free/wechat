@@ -92,7 +92,7 @@ interface WXFace{
 export class WeChat{
 
   static wxId: string = "wxc4da9d6e527ea9b5";
-  static secret: string = "wxc4da9d6e527ea9b5";
+  static secret: string = "";
   static handleWant?: Want;
   static install:WeChat = new WeChat({wxId:WeChat.wxId});
 
@@ -138,60 +138,64 @@ export class WeChat{
     }
   }
 
-  shareText(args:string,message?:MessageConfig){
+  shareText(args:string,message?:MessageConfig): Promise<SendReqResultWrap>{
     const textObject = new WXTextObject()
     textObject.text = args
-    this.shareMessage(textObject,message);
+    return this.shareMessage(textObject,message);
   }
 
-  async shareImage(args:string | fileIo.File | ArrayBuffer,message?:MessageConfig){
+  async shareImage(args:string | fileIo.File | ArrayBuffer,message?:MessageConfig): Promise<SendReqResultWrap>{
     if (typeof  args == "string") {
       if (args.startsWith("file")) {
-        this.shareImageFile(args,message)
+        return this.shareImageFile(args,message)
       }else if (args.startsWith("data")){
-        this.shareImageBase64(args,message)
+        return this.shareImageBase64(args,message)
       }else if (args.startsWith("http")){
-        this.shareImageHttp(args,message)
+        return this.shareImageHttp(args,message)
+      }else {
+        return false
       }
     }else {
-      this.shareImageFile(args,message)
+     return this.shareImageFile(args,message)
     }
   }
 
-  async shareImageHttp(args:string,message?:MessageConfig){
+  async shareImageHttp(args:string,message?:MessageConfig): Promise<SendReqResultWrap>{
     let arr:ArrayBuffer = await this.netImg(args)
-    this.shareImageFile(arr)
+    return this.shareImageFile(arr,message)
   }
 
-  shareImageBase64(args:string,message?:MessageConfig){
+  shareImageBase64(args:string,message?:MessageConfig): Promise<SendReqResultWrap>{
     const imageObject = new WXImageObject()
     let buf: buffer.Buffer = buffer.from(args);
     imageObject.imageData = buf.toString('base64', 0, buf.length);
+    return this.shareMessage(imageObject,message);
   }
 
-  shareImageFile(args:string | fileIo.File | ArrayBuffer,message?:MessageConfig){
+  shareImageFile(args:string | fileIo.File | ArrayBuffer,message?:MessageConfig): Promise<SendReqResultWrap>{
     const imageObject = new WXImageObject()
     if (typeof args == "string") {
       imageObject.uri = fileUri.getUriFromPath(args);
     }else if ( args instanceof ArrayBuffer) {
-      imageObject.uri = fileUri.getUriFromPath(this.createFile(args).path);
+      imageObject.uri = fileUri.getUriFromPath(this.createFile(args));
     }else {
       imageObject.uri = fileUri.getUriFromPath(args.path);
     }
+    return this.shareMessage(imageObject,message);
   }
 
-  shareWeb(args:string,message?:MessageConfig){
+  shareWeb(args:string,message?:MessageConfig): Promise<SendReqResultWrap>{
     const webpageObject = new WXWebpageObject()
     webpageObject.webpageUrl = args
-    this.shareMessage(webpageObject,message);
+    return this.shareMessage(webpageObject,message);
   }
 
-  shareMini(args:MiniConfig,message?:MessageConfig){
+  shareMini(args:MiniConfig,message?:MessageConfig): Promise<SendReqResultWrap>{
     const miniProgramObject = new WXMiniProgramObject()
     miniProgramObject.userName = args.username
     miniProgramObject.path = args.path
     miniProgramObject.miniprogramType = args.miniType
-    this.shareMessage(miniProgramObject,message);
+    return this.shareMessage(miniProgramObject,message);
   }
 
   async shareMessage(object:IMediaObject,message:MessageConfig = {}): Promise<SendReqResultWrap>{
@@ -364,13 +368,13 @@ export class WeChat{
     }
   }
 
-  private createFile(arr:ArrayBuffer):fileIo.File{
+  private createFile(arr:ArrayBuffer):string{
     let context = getContext() as common.UIAbilityContext;
     let filePath = context.filesDir + `/original-${Date.now()}.jpg`;
     let file: fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
     fileIo.writeSync(file.fd, arr);
     fileIo.closeSync(file);
-    return file
+    return filePath
   }
 
   private async netUrl(url:string):Promise<LoginFace>{
@@ -428,15 +432,5 @@ export class WeChat{
   }
 }
 
-//
-// WXUtil.install.shareText("",{onResp:()=>{}})
-// WXUtil.install.shareImage("",{onResp:()=>{}})
-// WXUtil.install.shareWeb("",{onResp:()=>{}})
-// WXUtil.install.shareMini({username:"",path:""},{onResp:()=>{}})
-//
-// WXUtil.install.openMini({username:"",path:""},{onResp:()=>{}})
-// WXUtil.install.openWX("",{onResp:()=>{}})
-//
-// WXUtil.install.miniPay({username:"",path:""},{onResp:()=>{}})
-// WXUtil.install.login({ scope: '' },(LoginFace)=>{})
-// WXUtil.install.pay({});
+
+WeChat.install.shareText("text",{onResp:(resp)=>{}})
