@@ -91,27 +91,37 @@ interface WXFace{
 
 export class WeChat{
 
-  static wxId: string = "wxc4da9d6e527ea9b5";
-  static secret: string = "";
-  static handleWant?: Want;
-  static install:WeChat = new WeChat({wxId:WeChat.wxId});
+  static install:WeChat = new WeChat({wxId:""});
 
   private wxId: string;
   private wx: WXApi ;
-  private secret: string;
+  private secret?: string;
   private context: common.UIAbilityContext = getContext() as common.UIAbilityContext;
   private readonly bundleName:string = "com.tencent.mm"
 
   constructor(face:WXFace) {
     this.wxId = face.wxId;
-    this.secret = face.secret ?? WeChat.secret;
     if (face.wx) {
       this.wx =  face.wx;
     }else {
       this.wx = WXAPIFactory.createWXAPI(this.wxId)
     }
-    if (face?.handleWant || WeChat.handleWant) {
-      this.wx.handleWant(face?.handleWant ?? WeChat.handleWant, WXShareEventHandler)
+    this.secret = face.secret;
+    if (face?.handleWant) {
+      this.wx.handleWant(face?.handleWant, WXShareEventHandler)
+    }
+  }
+
+  setConfig(face:WXFace){
+    this.wxId = face.wxId;
+    if (face.wx) {
+      this.wx =  face.wx;
+    }else {
+      this.wx = WXAPIFactory.createWXAPI(this.wxId)
+    }
+    this.secret = face.secret;
+    if (face?.handleWant) {
+      this.wx.handleWant(face?.handleWant, WXShareEventHandler)
     }
   }
 

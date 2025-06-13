@@ -2,7 +2,7 @@
 
 #### 介绍 [English](README.en.md)
 
-这是鸿蒙版本基于微信第三方简化封装的库，分享文字、分享图片、分享小程序、打开小程序、打开微信
+这是鸿蒙版本基于微信第三方简化封装的库，分享文字、分享图片、分享网页、分享小程序、打开小程序、打开微信
 
 #### 软件架构
 
@@ -16,8 +16,7 @@
 
 1、初始化，配置wxId以及handle监听方法
 ```
-WXUtil.wxId = "wxc4da9d6e527ea9b5";
-WXUtil.handleWant = baseWant;
+WXUtil.install.setConfig({wxId:"wxc4daXXXXXXXXXXX",handleWant:want});
 ```
 2、配置基础分享配置(可选)
 ```

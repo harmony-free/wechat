@@ -2,7 +2,7 @@
 
 #### Description [中文](README.md)
 
-This is a library based on the Hongmeng version, which is a simplified and encapsulated version of the WeChat third-party functions. It enables sharing of text, sharing of images, sharing of mini-programs, opening of mini-programs, and opening of WeChat.
+This is a library based on the Hongmeng version, which is a simplified and encapsulated version of the WeChat third-party functions. It enables sharing of text, sharing of images, share the webpage, sharing of mini-programs, opening of mini-programs, and opening of WeChat.
 #### Software Architecture 
 
 This is the Hongmeng version based on the WeChat Open Platform

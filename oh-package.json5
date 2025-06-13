@@ -1,9 +1,23 @@
 {
   "name": "@free/wechat",
   "version": "1.0.0",
-  "description": "Please describe the basic information.",
+  "description": "这是鸿蒙版本基于微信第三方简化封装的库，分享文字、分享图片、分享网页、分享小程序、打开小程序、打开微信.",
   "main": "Index.ets",
-  "author": "",
+  "keywords": [
+    "weixin",
+    "wechat",
+    "share",
+    "shareText",
+    "shareImage",
+    "shareWeb",
+    "shareMini",
+    "openWX",
+    "openMini",
+  ],
+  "author": {
+    "name": "余邦锦",
+    "email": "15179861454@163.com"
+  },
   "license": "Apache-2.0",
   "dependencies": {
     "@tencent/wechat_open_sdk": "^1.0.14"
