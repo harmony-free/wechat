@@ -15,8 +15,7 @@ This is the Hongmeng version based on the WeChat Open Platform
 
 1、Initialization, configuration of wxId and handle listening methods
 ```
-WXUtil.wxId = "wxc4da9d6e527ea9b5";
-WXUtil.handleWant = baseWant;
+WeChat.install.setConfig({wxId:"wxc4daXXXXXXXXXXX",handleWant:want});
 ```
 
 2、Configure basic sharing settings (optional)

@@ -18,7 +18,7 @@
 
 1、初始化，配置wxId以及handle监听方法
 ```
-WXUtil.install.setConfig({wxId:"wxc4daXXXXXXXXXXX",handleWant:want});
+WeChat.install.setConfig({wxId:"wxc4daXXXXXXXXXXX",handleWant:want});
 ```
 2、配置基础分享配置(可选)
 ```
@@ -57,7 +57,7 @@ WeChat.install.openWX("weixin://dl/business/?t=YODfF8dNclo",{onResp:(resp)=>{}})
 WeChat.install.openMini({username:"username",path:"path"},"path",{onResp:(resp)=>{}})
 ```
 
-8、微信授权
+9、微信授权
 ```
 WeChat.install.sendAuth({scope:"snsapi_userinfo",state:"session"},"path",{onResp:(resp)=>{}})
 ```

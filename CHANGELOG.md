@@ -1,4 +1,7 @@
 [English](CHANGELOG.en.md)
+### 1.0.1 修改
+
+修改readme文件
 
 ### 1.0.0 初始发布
 
