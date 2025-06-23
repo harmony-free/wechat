@@ -1,7 +1,7 @@
 {
   "name": "@free/wechat",
   "version": "1.0.0",
-  "description": "这是鸿蒙版本基于微信第三方简化封装的库，分享文字、分享图片、分享网页、分享小程序、打开小程序、打开微信.",
+  "description": "这是鸿蒙版本基于微信第三方简化封装的库，分享文字、分享图片、分享网页、分享小程序、打开小程序、打开微信、微信授权.",
   "main": "Index.ets",
   "keywords": [
     "weixin",
@@ -13,12 +13,15 @@
     "shareMini",
     "openWX",
     "openMini",
+    "sendAuth"
   ],
   "author": {
     "name": "余邦锦",
     "email": "15179861454@163.com"
   },
-  "license": "Apache-2.0",
+  "homepage": "https://gitee.com/harmony-free",
+  "repository": "https://gitee.com/harmony-free/wechat",
+  "license": "MIT",
   "dependencies": {
     "@tencent/wechat_open_sdk": "^1.0.14"
   }

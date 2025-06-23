@@ -14,6 +14,8 @@
 
 #### 使用说明
 
+注意：必须要保证AGC签名和微信上保持一致
+
 1、初始化，配置wxId以及handle监听方法
 ```
 WXUtil.install.setConfig({wxId:"wxc4daXXXXXXXXXXX",handleWant:want});
@@ -44,7 +46,7 @@ WeChat.install.shareWeb("https://developer.huawei.com/consumer/cn/",{onResp:(res
 ```
 6、分享小程序
 ```
-WeChat.install.shareMini("username","path",{onResp:(resp)=>{}})
+WeChat.install.shareMini({username:"username",path:"path"},{onResp:(resp)=>{}})
 ```
 7、打开微信
 ```
@@ -52,7 +54,12 @@ WeChat.install.openWX("weixin://dl/business/?t=YODfF8dNclo",{onResp:(resp)=>{}})
 ```
 8、打开小程序
 ```
-WeChat.install.openMini("username","path",{onResp:(resp)=>{}})
+WeChat.install.openMini({username:"username",path:"path"},"path",{onResp:(resp)=>{}})
+```
+
+8、微信授权
+```
+WeChat.install.sendAuth({scope:"snsapi_userinfo",state:"session"},"path",{onResp:(resp)=>{}})
 ```
 
 #### 参与贡献

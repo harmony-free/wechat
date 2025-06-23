@@ -441,6 +441,3 @@ export class WeChat{
     });
   }
 }
-
-
-WeChat.install.shareText("text",{onResp:(resp)=>{}})

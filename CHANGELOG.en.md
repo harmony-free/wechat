@@ -8,4 +8,5 @@ Share the webpage
 Share Mini Program
 Open the mini program
 Open WeChat
+WeChat authorization
 

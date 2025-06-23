@@ -61,6 +61,10 @@ WeChat.install.openWX("weixin://dl/business/?t=YODfF8dNclo",{onResp:(resp)=>{}})
 WeChat.install.openMini("username","path",{onResp:(resp)=>{}})
 ```
 
+9、WeChat authorization
+```
+WeChat.install.sendAuth({scope:"snsapi_userinfo",state:"session"},"path",{onResp:(resp)=>{}})
+```
 
 #### Contribution
 
