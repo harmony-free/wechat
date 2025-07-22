@@ -1,11 +1,12 @@
 {
-  "module": {
-    "name": "wechat",
-    "type": "har",
-    "deviceTypes": [
-      "default",
-      "tablet",
-      "2in1"
-    ]
-  }
+	"module": {
+		"name": "wechat",
+		"type": "har",
+		"deviceTypes": [
+			"default",
+			"tablet",
+			"2in1"
+		],
+		"routerMap": "$profile:route_map"
+	}
 }
